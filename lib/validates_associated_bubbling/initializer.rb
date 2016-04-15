@@ -16,7 +16,7 @@ module ActiveRecord
     class PatientEvaluationAssociatedBubblingValidator < ActiveModel::EachValidator
       def validate_each(record, attribute, value)
         Array(value).reject(&:valid?).each do |v|
-          v.errors.to_hash.each do |k, v|
+          v.errors.each do |k, v|
             record.errors.add k, v, options.merge(value: value)
           end
         end
